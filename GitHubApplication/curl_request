@@ -1,0 +1,8 @@
+// запрос для получение моих репозиториев
+curl https://api.github.com/users/Bardincom/repos
+
+// Запрос для получения репозиториев пользователя elegion
+curl https://api.github.com/users/elegion/repos
+
+//Запрос на поиск репозитория, в названии которого содержится слово “tetris”, написанным на языке Java
+curl https://api.github.com/search/repositories\?q\=tetris+language:jawa
