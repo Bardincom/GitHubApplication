@@ -59,6 +59,7 @@ private extension LoginViewController {
   func customizeItems() {
     usernameTextField.placeholder = "username"
     passwordTextField.placeholder = "password"
+    passwordTextField.isSecureTextEntry = true
     loginButton.layer.cornerRadius = 5
   }
 
@@ -67,9 +68,9 @@ private extension LoginViewController {
                   _ firstTextField: UITextField,
                   _ secondTextField: UITextField,
                   _ factor: CGFloat) {
-    if firstTextField.isEditing {
+    if firstTextField.isFirstResponder {
       self.view.frame.origin.y = -keyboardSize.height * factor
-    } else if secondTextField.isEditing {
+    } else if secondTextField.isFirstResponder {
       self.view.frame.origin.y = -keyboardSize.height * factor
     }
   }
