@@ -6,3 +6,7 @@ curl https://api.github.com/users/elegion/repos
 
 //Запрос на поиск репозитория, в названии которого содержится слово “tetris”, написанным на языке Java
 curl https://api.github.com/search/repositories\?q\=tetris+language:jawa
+
+В Postman запрос будет выглядеть иначе
+GET https://api.github.com/users/Bardincom/repos
+GET https://api.github.com/search/repositories?q=tetris+language:jawa
