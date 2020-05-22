@@ -16,6 +16,13 @@ final class LoginViewController: UIViewController {
   @IBOutlet var passwordTextField: UITextField!
   @IBOutlet var loginButton: UIButton!
 
+  /// загружаемое из интернета изобржение
+  private let urlImage = URL(string: "https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png")
+
+  private let usernamePlaceholder = "username"
+  private let passwordPlaceholder = "password"
+  private let cornerRadius: CGFloat = 5
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -45,6 +52,11 @@ final class LoginViewController: UIViewController {
   @IBAction func returnPassword(_ sender: UITextField) {
     sender.resignFirstResponder()
   }
+
+  @IBAction func hideKeyboard(_ sender: UITapGestureRecognizer) {
+    usernameTextField.resignFirstResponder()
+    passwordTextField.resignFirstResponder()
+  }
 }
 
 // MARK: Helpers Methods
@@ -57,10 +69,10 @@ private extension LoginViewController {
 
   /// настройка внешнего вида UI элементов
   func customizeItems() {
-    usernameTextField.placeholder = "username"
-    passwordTextField.placeholder = "password"
+    usernameTextField.placeholder = usernamePlaceholder
+    passwordTextField.placeholder = passwordPlaceholder
     passwordTextField.isSecureTextEntry = true
-    loginButton.layer.cornerRadius = 5
+    loginButton.layer.cornerRadius = cornerRadius
   }
 
   /// смещает клавиатуру в зависимости от размера экрана
@@ -94,7 +106,7 @@ private extension LoginViewController {
 
   @objc
   func keyboardWillHide() {
-    self.view.frame.origin.y = 0
+    self.view.frame.origin.y = .zero
   }
 
   @objc
