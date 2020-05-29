@@ -9,6 +9,9 @@ import Foundation
 import UIKit
 
 public let maxHeightFrame: CGFloat = 736
+public let cornerRadiusButton: CGFloat = 5
+//public let cornerRadiusAvatar: CGFloat =
+public let defaultAvatar: UIImage = #imageLiteral(resourceName: "defaultAvatar")
 
 /// коэффициент изменяющий смещение view относительно клавиатуры, для экранов с большим и маленьким рарзешением
 enum Factor {

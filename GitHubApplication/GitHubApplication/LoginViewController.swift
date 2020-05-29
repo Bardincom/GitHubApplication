@@ -21,7 +21,7 @@ final class LoginViewController: UIViewController {
 
   private let usernamePlaceholder = "username"
   private let passwordPlaceholder = "password"
-  private let cornerRadius: CGFloat = 5
+  private let identifier = "userViewController"
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -43,7 +43,10 @@ final class LoginViewController: UIViewController {
   }
 
   @IBAction func pressLoginButton(_ sender: Any) {
-    print("Press Login Button")
+    guard let userViewController = storyboard?.instantiateViewController(identifier: identifier) as? UserViewController else { return }
+    let userName = usernameTextField.text
+    userViewController.userName = userName
+    navigationController?.pushViewController(userViewController, animated: true)
   }
 
   @IBAction func returnUsername(_ sender: UITextField) {
@@ -72,7 +75,7 @@ private extension LoginViewController {
     usernameTextField.placeholder = usernamePlaceholder
     passwordTextField.placeholder = passwordPlaceholder
     passwordTextField.isSecureTextEntry = true
-    loginButton.layer.cornerRadius = cornerRadius
+    loginButton.layer.cornerRadius = cornerRadiusButton
   }
 
   /// смещает клавиатуру в зависимости от размера экрана

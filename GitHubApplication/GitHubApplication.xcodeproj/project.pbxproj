@@ -17,6 +17,7 @@
 		A27C0D90247476F3002050A6 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A27C0D8F247476F3002050A6 /* .gitignore */; };
 		A27C0D95247487AA002050A6 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A27C0D94247487AA002050A6 /* .swiftlint.yml */; };
 		A27C0D9824753C12002050A6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0D9724753C12002050A6 /* Constants.swift */; };
+		A2B0ABE22480FC800052CC1A /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B0ABE12480FC800052CC1A /* UserViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		A27C0D8F247476F3002050A6 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		A27C0D94247487AA002050A6 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		A27C0D9724753C12002050A6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A2B0ABE12480FC800052CC1A /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 			children = (
 				A27C0D9124747932002050A6 /* Code */,
 				A27C0D7F24747634002050A6 /* LoginViewController.swift */,
+				A2B0ABE12480FC800052CC1A /* UserViewController.swift */,
 				A27C0D8124747634002050A6 /* Main.storyboard */,
 				A27C0D8624747637002050A6 /* LaunchScreen.storyboard */,
 				A27C0D8924747637002050A6 /* Info.plist */,
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A27C0D8024747634002050A6 /* LoginViewController.swift in Sources */,
+				A2B0ABE22480FC800052CC1A /* UserViewController.swift in Sources */,
 				A27C0D7C24747634002050A6 /* AppDelegate.swift in Sources */,
 				A27C0D7E24747634002050A6 /* SceneDelegate.swift in Sources */,
 				A27C0D9824753C12002050A6 /* Constants.swift in Sources */,
