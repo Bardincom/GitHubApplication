@@ -10,11 +10,15 @@ import UIKit
 
 public let maxHeightFrame: CGFloat = 736
 public let cornerRadiusButton: CGFloat = 5
-//public let cornerRadiusAvatar: CGFloat =
 public let defaultAvatar: UIImage = #imageLiteral(resourceName: "defaultAvatar")
 
 /// коэффициент изменяющий смещение view относительно клавиатуры, для экранов с большим и маленьким рарзешением
 enum Factor {
   static let compact: CGFloat = 0.8
   static let regular: CGFloat = 0.3
+}
+
+enum Filter {
+  static let ascendedFilter = "asc"
+  static let descendedFilter = "desc"
 }

@@ -26,34 +26,27 @@ final class LoginViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    setDelegate()
     setLogo()
     customizeItems()
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-
     notificationAddObserver()
   }
 
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-
     notificationRemoveObserver()
   }
 
   @IBAction func pressLoginButton(_ sender: Any) {
     guard let userViewController = storyboard?.instantiateViewController(identifier: identifier) as? UserViewController else { return }
+
     let userName = usernameTextField.text
     userViewController.userName = userName
     navigationController?.pushViewController(userViewController, animated: true)
-  }
-
-  @IBAction func returnUsername(_ sender: UITextField) {
-    sender.resignFirstResponder()
-  }
-  @IBAction func returnPassword(_ sender: UITextField) {
-    sender.resignFirstResponder()
   }
 
   @IBAction func hideKeyboard(_ sender: UITapGestureRecognizer) {
@@ -62,8 +55,17 @@ final class LoginViewController: UIViewController {
   }
 }
 
+// MARK: UITextFieldDelegate
+extension LoginViewController: UITextFieldDelegate {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    return true
+  }
+}
+
 // MARK: Helpers Methods
 private extension LoginViewController {
+
   /// установка загруженного изображения
   func setLogo() {
     let urlLogoImage = urlImage
@@ -78,29 +80,32 @@ private extension LoginViewController {
     loginButton.layer.cornerRadius = cornerRadiusButton
   }
 
-  /// смещает клавиатуру в зависимости от размера экрана
-  func shiftView (_ keyboardSize: CGRect,
-                  _ firstTextField: UITextField,
-                  _ secondTextField: UITextField,
-                  _ factor: CGFloat) {
-    if firstTextField.isFirstResponder {
-      self.view.frame.origin.y = -keyboardSize.height * factor
-    } else if secondTextField.isFirstResponder {
-      self.view.frame.origin.y = -keyboardSize.height * factor
-    }
+  func setDelegate() {
+    usernameTextField.delegate = self
+    passwordTextField.delegate = self
   }
 
   /// сообщает что клавиатура появилась
   func notificationAddObserver() {
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(keyboardWillChange(notification:)),
+                                           name: UIResponder.keyboardWillChangeFrameNotification,
+                                           object: nil)
 
-    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(keyboardWillHide),
+                                           name: UIResponder.keyboardWillHideNotification,
+                                           object: nil)
   }
 
   /// сообщает что клавиатура была скрыта
   func notificationRemoveObserver() {
-    NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
-    NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    NotificationCenter.default.removeObserver(self,
+                                              name: UIResponder.keyboardWillChangeFrameNotification,
+                                              object: nil)
+    NotificationCenter.default.removeObserver(self,
+                                              name: UIResponder.keyboardWillHideNotification,
+                                              object: nil)
   }
 }
 

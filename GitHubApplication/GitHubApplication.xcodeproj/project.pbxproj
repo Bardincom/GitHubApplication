@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0F1A2D368409A2A0D8E1CDBB /* Pods_GitHubApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BCF3CBB7CBC6241FC98A0E9 /* Pods_GitHubApplication.framework */; };
-		A24204E52482EADC00714D0A /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24204E42482EADC00714D0A /* SearchModel.swift */; };
 		A24204E72482EBD600714D0A /* SessionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24204E62482EBD600714D0A /* SessionProvider.swift */; };
+		A24204E92483F78000714D0A /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24204E82483F78000714D0A /* UIViewController + Extension.swift */; };
 		A27C0D7C24747634002050A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0D7B24747634002050A6 /* AppDelegate.swift */; };
 		A27C0D7E24747634002050A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0D7D24747634002050A6 /* SceneDelegate.swift */; };
 		A27C0D8024747634002050A6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0D7F24747634002050A6 /* LoginViewController.swift */; };
@@ -26,8 +26,8 @@
 		1BCF3CBB7CBC6241FC98A0E9 /* Pods_GitHubApplication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHubApplication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		53FB0DC0157FBC5703BF822C /* Pods-GitHubApplication.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubApplication.release.xcconfig"; path = "Target Support Files/Pods-GitHubApplication/Pods-GitHubApplication.release.xcconfig"; sourceTree = "<group>"; };
 		7725A5FCC832AEC7C031C45F /* Pods-GitHubApplication.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubApplication.debug.xcconfig"; path = "Target Support Files/Pods-GitHubApplication/Pods-GitHubApplication.debug.xcconfig"; sourceTree = "<group>"; };
-		A24204E42482EADC00714D0A /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		A24204E62482EBD600714D0A /* SessionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionProvider.swift; sourceTree = "<group>"; };
+		A24204E82483F78000714D0A /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		A27C0D7824747634002050A6 /* GitHubApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A27C0D7B24747634002050A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A27C0D7D24747634002050A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				A27C0D9724753C12002050A6 /* Constants.swift */,
-				A24204E42482EADC00714D0A /* SearchModel.swift */,
+				A24204E82483F78000714D0A /* UIViewController + Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -272,9 +272,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A27C0D8024747634002050A6 /* LoginViewController.swift in Sources */,
+				A24204E92483F78000714D0A /* UIViewController + Extension.swift in Sources */,
 				A2B0ABE22480FC800052CC1A /* UserViewController.swift in Sources */,
 				A27C0D7C24747634002050A6 /* AppDelegate.swift in Sources */,
-				A24204E52482EADC00714D0A /* SearchModel.swift in Sources */,
 				A27C0D7E24747634002050A6 /* SceneDelegate.swift in Sources */,
 				A27C0D9824753C12002050A6 /* Constants.swift in Sources */,
 				A24204E72482EBD600714D0A /* SessionProvider.swift in Sources */,

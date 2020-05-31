@@ -46,17 +46,11 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="220" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
-                                                <connections>
-                                                    <action selector="returnUsername:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="gaB-2V-Ojn"/>
-                                                </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KAV-Hl-Hwr">
                                                 <rect key="frame" x="0.0" y="44" width="220" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
-                                                <connections>
-                                                    <action selector="returnPassword:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="l6a-FB-JrF"/>
-                                                </connections>
                                             </textField>
                                         </subviews>
                                         <constraints>
@@ -177,7 +171,7 @@
                                         </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNz-sp-LJz">
-                                        <rect key="frame" x="50" y="426" width="220" height="44"/>
+                                        <rect key="frame" x="50" y="415" width="220" height="44"/>
                                         <color key="backgroundColor" name="gitGubColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="kCc-On-zff"/>
@@ -222,7 +216,7 @@
                                     <constraint firstItem="tmh-E6-a2K" firstAttribute="trailing" secondItem="2T1-H5-KNd" secondAttribute="trailing" constant="50" id="Hww-Lk-kDR"/>
                                     <constraint firstItem="N2C-il-KV6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tmh-E6-a2K" secondAttribute="leading" constant="109.58888645752177" id="Jtj-hV-ZTr"/>
                                     <constraint firstItem="lOU-LS-Q0G" firstAttribute="top" secondItem="XxJ-AW-Kac" secondAttribute="top" constant="8" id="Kky-1A-Dk8"/>
-                                    <constraint firstItem="eNz-sp-LJz" firstAttribute="top" secondItem="k0X-i2-hJa" secondAttribute="bottom" constant="56" id="N7s-x5-u3A"/>
+                                    <constraint firstItem="eNz-sp-LJz" firstAttribute="top" secondItem="k0X-i2-hJa" secondAttribute="bottom" constant="45" id="N7s-x5-u3A"/>
                                     <constraint firstItem="N2C-il-KV6" firstAttribute="top" secondItem="lOU-LS-Q0G" secondAttribute="bottom" constant="16" id="Pnb-uG-SMk"/>
                                     <constraint firstItem="SzO-Fi-j7K" firstAttribute="leading" secondItem="tmh-E6-a2K" secondAttribute="leading" constant="66" id="Vyo-UE-euE"/>
                                     <constraint firstItem="lOU-LS-Q0G" firstAttribute="centerX" secondItem="1oj-iQ-4Pj" secondAttribute="centerX" id="W8X-qS-wFN"/>
@@ -255,6 +249,7 @@
                     <navigationItem key="navigationItem" id="gPA-Nm-N5c"/>
                     <connections>
                         <outlet property="avatarImage" destination="N2C-il-KV6" id="QhC-MJ-ex6"/>
+                        <outlet property="filterControl" destination="k0X-i2-hJa" id="hV5-Na-3zm"/>
                         <outlet property="helloUser" destination="lOU-LS-Q0G" id="3Xd-D9-KXo"/>
                         <outlet property="searchLanguage" destination="pAi-MS-KYa" id="PPk-rJ-ZEv"/>
                         <outlet property="searchRepositoryName" destination="8Bf-vz-tTA" id="fKt-4V-3hi"/>
@@ -262,7 +257,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wu2-HX-u6Q" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="cpy-7f-j5u"/>
+                <tapGestureRecognizer id="cpy-7f-j5u">
+                    <connections>
+                        <action selector="hideKeyboard:" destination="2yw-4n-Nbf" id="qyn-fb-PJw"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1906.875" y="125.70422535211267"/>
         </scene>
