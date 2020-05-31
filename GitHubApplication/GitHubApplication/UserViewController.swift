@@ -16,6 +16,7 @@ final class UserViewController: UIViewController {
   @IBOutlet private var searchLanguage: UITextField!
   @IBOutlet private var startSearchButton: UIButton!
 
+  let sessionProvider = SessionProvider()
   public var userName: String?
   private let repositoryNamePlaceholder = "repository name"
   private let languagePlaceholder = "language"
@@ -33,6 +34,18 @@ final class UserViewController: UIViewController {
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
 
+  }
+
+  @IBAction func pressStartSearch(_ sender: UIButton) {
+
+    sessionProvider.searchRepositiries(name: searchRepositoryName.text ?? "",
+                                       language: searchLanguage.text ?? "",
+                                       filter: "asc")
+  }
+
+
+  @IBAction func filterControl(_ sender: UISegmentedControl) {
+    
   }
 }
 

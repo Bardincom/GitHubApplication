@@ -6,7 +6,7 @@ whitelist_rules:
     - closure_parameter_position
     - closure_spacing
     - collection_alignment
-    - colon
+    #- colon
     - comma
     #- conditional_returns_on_newline
     - control_statement

@@ -186,6 +186,9 @@
                                         <state key="normal" title="Start search">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="pressStartSearch:" destination="2yw-4n-Nbf" eventType="touchUpInside" id="8MC-fC-cdB"/>
+                                        </connections>
                                     </button>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="k0X-i2-hJa">
                                         <rect key="frame" x="50" y="326" width="220" height="45"/>
@@ -196,6 +199,9 @@
                                             <segment title="ascended"/>
                                             <segment title="descended"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="filterControl:" destination="2yw-4n-Nbf" eventType="valueChanged" id="6Ia-xp-Fk9"/>
+                                        </connections>
                                     </segmentedControl>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Search repository" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SzO-Fi-j7K">
                                         <rect key="frame" x="66" y="188" width="188" height="24"/>
