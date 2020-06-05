@@ -33,7 +33,8 @@ final class LoginViewController: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    notificationAddObserver()
+
+    notificationAddObserver(#selector(keyboardWillShown(notification:)))
   }
 
   override func viewWillDisappear(_ animated: Bool) {
@@ -84,41 +85,13 @@ private extension LoginViewController {
     usernameTextField.delegate = self
     passwordTextField.delegate = self
   }
-
-  /// сообщает что клавиатура появилась
-  func notificationAddObserver() {
-    NotificationCenter.default.addObserver(self,
-                                           selector: #selector(keyboardWillChange(notification:)),
-                                           name: UIResponder.keyboardWillChangeFrameNotification,
-                                           object: nil)
-
-    NotificationCenter.default.addObserver(self,
-                                           selector: #selector(keyboardWillHide),
-                                           name: UIResponder.keyboardWillHideNotification,
-                                           object: nil)
-  }
-
-  /// сообщает что клавиатура была скрыта
-  func notificationRemoveObserver() {
-    NotificationCenter.default.removeObserver(self,
-                                              name: UIResponder.keyboardWillChangeFrameNotification,
-                                              object: nil)
-    NotificationCenter.default.removeObserver(self,
-                                              name: UIResponder.keyboardWillHideNotification,
-                                              object: nil)
-  }
 }
 
 // MARK: Selectors
 private extension LoginViewController {
 
   @objc
-  func keyboardWillHide() {
-    self.view.frame.origin.y = .zero
-  }
-
-  @objc
-  func keyboardWillChange(notification: NSNotification) {
+  func keyboardWillShown(notification: NSNotification) {
 
     if let size = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
 

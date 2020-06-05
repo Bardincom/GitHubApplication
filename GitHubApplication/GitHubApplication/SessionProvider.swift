@@ -15,10 +15,6 @@ class SessionProvider: NSObject {
   private let host = "api.github.com"
   private let hostPath = "https://api.github.com"
   private let searchRepoPath = "/search/repositories"
-  private let defaultHeaders = [
-    "Content-Type" : "application/json",
-    "Accept" : "application/vnd.github.v3+json"
-  ]
 
   /// Поиск по GITHub
   /// - Parameters:
@@ -49,8 +45,6 @@ class SessionProvider: NSObject {
     }
 
     guard let url = urlComponents.url else { return }
-    var request = URLRequest(url: url)
-    request.allHTTPHeaderFields = defaultHeaders
 
     let dataTask = sharedSession.dataTask(with: url) { (data, response, error) in
       if let error = error {
@@ -58,12 +52,11 @@ class SessionProvider: NSObject {
         return
       }
 
-      guard let responce = response, let data = data else { return }
-      print(responce)
+      guard let data = data else { return }
 
       do {
         let json = try JSONSerialization.jsonObject(with: data)
-        print(json)
+        print("Тут начинается JSON: \(json)")
       } catch {
         print(error)
       }
