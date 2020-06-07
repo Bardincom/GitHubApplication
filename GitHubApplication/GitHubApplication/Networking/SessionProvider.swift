@@ -10,7 +10,7 @@ import Foundation
 
 class SessionProvider: NSObject {
 
-  public let sharedSession = URLSession.shared
+  private let sharedSession = URLSession.shared
   private let scheme = "https"
   private let host = "api.github.com"
   private let hostPath = "https://api.github.com"
@@ -45,6 +45,7 @@ class SessionProvider: NSObject {
     }
 
     guard let url = urlComponents.url else { return }
+    print(url)
 
     let dataTask = sharedSession.dataTask(with: url) { (data, response, error) in
       if let error = error {

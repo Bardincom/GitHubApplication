@@ -124,10 +124,10 @@
             </objects>
             <point key="canvasLocation" x="251" y="127"/>
         </scene>
-        <!--User View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="fgc-Tg-PoU">
             <objects>
-                <viewController storyboardIdentifier="userViewController" id="2yw-4n-Nbf" customClass="UserViewController" customModule="GitHubApplication" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="userViewController" id="2yw-4n-Nbf" customClass="SearchViewController" customModule="GitHubApplication" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4ln-FT-WxK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -1,5 +1,5 @@
 //
-//  UserViewController.swift
+//  SearchViewController.swift
 //  GitHubApplication
 //
 //  Created by Aleksey Bardin on 29.05.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class UserViewController: UIViewController {
+final class SearchViewController: UIViewController {
 
   @IBOutlet private var helloUser: UILabel!
   @IBOutlet private var avatarImage: UIImageView!
@@ -64,7 +64,7 @@ final class UserViewController: UIViewController {
   }
 }
 
-private extension UserViewController {
+private extension SearchViewController {
 
   func customizeItems() {
     searchRepositoryName.placeholder = repositoryNamePlaceholder
@@ -86,7 +86,7 @@ private extension UserViewController {
 }
 
 // MARK: Selectors
-private extension UserViewController {
+private extension SearchViewController {
 
   @objc
   func keyboardWillShown(notification: NSNotification) {
@@ -105,7 +105,7 @@ private extension UserViewController {
 }
 
 // MARK: TextFieldDelegate
-extension UserViewController: UITextFieldDelegate {
+extension SearchViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
     return true

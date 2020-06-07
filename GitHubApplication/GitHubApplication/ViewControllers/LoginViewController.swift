@@ -43,7 +43,7 @@ final class LoginViewController: UIViewController {
   }
 
   @IBAction func pressLoginButton(_ sender: Any) {
-    guard let userViewController = storyboard?.instantiateViewController(identifier: identifier) as? UserViewController else { return }
+    guard let userViewController = storyboard?.instantiateViewController(identifier: identifier) as? SearchViewController else { return }
 
     let userName = usernameTextField.text
     userViewController.userName = userName

@@ -10,6 +10,9 @@
 		0F1A2D368409A2A0D8E1CDBB /* Pods_GitHubApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BCF3CBB7CBC6241FC98A0E9 /* Pods_GitHubApplication.framework */; };
 		A24204E72482EBD600714D0A /* SessionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24204E62482EBD600714D0A /* SessionProvider.swift */; };
 		A24204E92483F78000714D0A /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24204E82483F78000714D0A /* UIViewController + Extension.swift */; };
+		A2723409248D96530023B25F /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2723408248D96530023B25F /* Search.swift */; };
+		A272340B248D967A0023B25F /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272340A248D967A0023B25F /* Repository.swift */; };
+		A272340D248D96C70023B25F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272340C248D96C70023B25F /* User.swift */; };
 		A27C0D7C24747634002050A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0D7B24747634002050A6 /* AppDelegate.swift */; };
 		A27C0D7E24747634002050A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0D7D24747634002050A6 /* SceneDelegate.swift */; };
 		A27C0D8024747634002050A6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0D7F24747634002050A6 /* LoginViewController.swift */; };
@@ -19,7 +22,7 @@
 		A27C0D90247476F3002050A6 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A27C0D8F247476F3002050A6 /* .gitignore */; };
 		A27C0D95247487AA002050A6 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A27C0D94247487AA002050A6 /* .swiftlint.yml */; };
 		A27C0D9824753C12002050A6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0D9724753C12002050A6 /* Constants.swift */; };
-		A2B0ABE22480FC800052CC1A /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B0ABE12480FC800052CC1A /* UserViewController.swift */; };
+		A2B0ABE22480FC800052CC1A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B0ABE12480FC800052CC1A /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		7725A5FCC832AEC7C031C45F /* Pods-GitHubApplication.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubApplication.debug.xcconfig"; path = "Target Support Files/Pods-GitHubApplication/Pods-GitHubApplication.debug.xcconfig"; sourceTree = "<group>"; };
 		A24204E62482EBD600714D0A /* SessionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionProvider.swift; sourceTree = "<group>"; };
 		A24204E82483F78000714D0A /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
+		A2723408248D96530023B25F /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		A272340A248D967A0023B25F /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		A272340C248D96C70023B25F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A27C0D7824747634002050A6 /* GitHubApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A27C0D7B24747634002050A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A27C0D7D24747634002050A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,7 +45,7 @@
 		A27C0D8F247476F3002050A6 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		A27C0D94247487AA002050A6 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		A27C0D9724753C12002050A6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		A2B0ABE12480FC800052CC1A /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		A2B0ABE12480FC800052CC1A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +77,34 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A2723405248D959C0023B25F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A27C0D7F24747634002050A6 /* LoginViewController.swift */,
+				A2B0ABE12480FC800052CC1A /* SearchViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A2723406248D95C60023B25F /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				A2723407248D961E0023B25F /* Model */,
+				A24204E62482EBD600714D0A /* SessionProvider.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		A2723407248D961E0023B25F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A2723408248D96530023B25F /* Search.swift */,
+				A272340A248D967A0023B25F /* Repository.swift */,
+				A272340C248D96C70023B25F /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		A27C0D6F24747633002050A6 = {
 			isa = PBXGroup;
 			children = (
@@ -97,9 +131,8 @@
 			isa = PBXGroup;
 			children = (
 				A27C0D9124747932002050A6 /* Code */,
-				A27C0D7F24747634002050A6 /* LoginViewController.swift */,
-				A2B0ABE12480FC800052CC1A /* UserViewController.swift */,
-				A24204E62482EBD600714D0A /* SessionProvider.swift */,
+				A2723405248D959C0023B25F /* ViewControllers */,
+				A2723406248D95C60023B25F /* Networking */,
 				A27C0D8124747634002050A6 /* Main.storyboard */,
 				A27C0D8624747637002050A6 /* LaunchScreen.storyboard */,
 				A27C0D8924747637002050A6 /* Info.plist */,
@@ -273,10 +306,13 @@
 			files = (
 				A27C0D8024747634002050A6 /* LoginViewController.swift in Sources */,
 				A24204E92483F78000714D0A /* UIViewController + Extension.swift in Sources */,
-				A2B0ABE22480FC800052CC1A /* UserViewController.swift in Sources */,
+				A2B0ABE22480FC800052CC1A /* SearchViewController.swift in Sources */,
 				A27C0D7C24747634002050A6 /* AppDelegate.swift in Sources */,
 				A27C0D7E24747634002050A6 /* SceneDelegate.swift in Sources */,
+				A272340B248D967A0023B25F /* Repository.swift in Sources */,
+				A2723409248D96530023B25F /* Search.swift in Sources */,
 				A27C0D9824753C12002050A6 /* Constants.swift in Sources */,
+				A272340D248D96C70023B25F /* User.swift in Sources */,
 				A24204E72482EBD600714D0A /* SessionProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
