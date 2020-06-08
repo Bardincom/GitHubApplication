@@ -13,6 +13,11 @@
 		A2723409248D96530023B25F /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2723408248D96530023B25F /* Search.swift */; };
 		A272340B248D967A0023B25F /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272340A248D967A0023B25F /* Repository.swift */; };
 		A272340D248D96C70023B25F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272340C248D96C70023B25F /* User.swift */; };
+		A2723410248E091C0023B25F /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A272340E248E091C0023B25F /* SearchResultsViewController.swift */; };
+		A2723411248E091C0023B25F /* SearchResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A272340F248E091C0023B25F /* SearchResultsViewController.xib */; };
+		A2723416248E0ACD0023B25F /* SearchResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2723414248E0ACD0023B25F /* SearchResultsTableViewCell.swift */; };
+		A2723417248E0ACD0023B25F /* SearchResultsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2723415248E0ACD0023B25F /* SearchResultsTableViewCell.xib */; };
+		A2723419248E71B40023B25F /* UITableView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2723418248E71B40023B25F /* UITableView + Extension.swift */; };
 		A27C0D7C24747634002050A6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0D7B24747634002050A6 /* AppDelegate.swift */; };
 		A27C0D7E24747634002050A6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0D7D24747634002050A6 /* SceneDelegate.swift */; };
 		A27C0D8024747634002050A6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0D7F24747634002050A6 /* LoginViewController.swift */; };
@@ -34,6 +39,11 @@
 		A2723408248D96530023B25F /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		A272340A248D967A0023B25F /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		A272340C248D96C70023B25F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A272340E248E091C0023B25F /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		A272340F248E091C0023B25F /* SearchResultsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultsViewController.xib; sourceTree = "<group>"; };
+		A2723414248E0ACD0023B25F /* SearchResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewCell.swift; sourceTree = "<group>"; };
+		A2723415248E0ACD0023B25F /* SearchResultsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultsTableViewCell.xib; sourceTree = "<group>"; };
+		A2723418248E71B40023B25F /* UITableView + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + Extension.swift"; sourceTree = "<group>"; };
 		A27C0D7824747634002050A6 /* GitHubApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A27C0D7B24747634002050A6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A27C0D7D24747634002050A6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +92,7 @@
 			children = (
 				A27C0D7F24747634002050A6 /* LoginViewController.swift */,
 				A2B0ABE12480FC800052CC1A /* SearchViewController.swift */,
+				A2723412248E0A380023B25F /* SearchController */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -103,6 +114,25 @@
 				A272340C248D96C70023B25F /* User.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A2723412248E0A380023B25F /* SearchController */ = {
+			isa = PBXGroup;
+			children = (
+				A2723413248E0A530023B25F /* SearchResultsTableViewCell */,
+				A272340E248E091C0023B25F /* SearchResultsViewController.swift */,
+				A272340F248E091C0023B25F /* SearchResultsViewController.xib */,
+			);
+			path = SearchController;
+			sourceTree = "<group>";
+		};
+		A2723413248E0A530023B25F /* SearchResultsTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				A2723414248E0ACD0023B25F /* SearchResultsTableViewCell.swift */,
+				A2723415248E0ACD0023B25F /* SearchResultsTableViewCell.xib */,
+			);
+			path = SearchResultsTableViewCell;
 			sourceTree = "<group>";
 		};
 		A27C0D6F24747633002050A6 = {
@@ -164,6 +194,7 @@
 			children = (
 				A27C0D9724753C12002050A6 /* Constants.swift */,
 				A24204E82483F78000714D0A /* UIViewController + Extension.swift */,
+				A2723418248E71B40023B25F /* UITableView + Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -232,8 +263,10 @@
 				A27C0D95247487AA002050A6 /* .swiftlint.yml in Resources */,
 				A27C0D90247476F3002050A6 /* .gitignore in Resources */,
 				A27C0D8824747637002050A6 /* LaunchScreen.storyboard in Resources */,
+				A2723417248E0ACD0023B25F /* SearchResultsTableViewCell.xib in Resources */,
 				A27C0D8524747637002050A6 /* Assets.xcassets in Resources */,
 				A27C0D8324747634002050A6 /* Main.storyboard in Resources */,
+				A2723411248E091C0023B25F /* SearchResultsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,10 +340,13 @@
 				A27C0D8024747634002050A6 /* LoginViewController.swift in Sources */,
 				A24204E92483F78000714D0A /* UIViewController + Extension.swift in Sources */,
 				A2B0ABE22480FC800052CC1A /* SearchViewController.swift in Sources */,
+				A2723410248E091C0023B25F /* SearchResultsViewController.swift in Sources */,
 				A27C0D7C24747634002050A6 /* AppDelegate.swift in Sources */,
+				A2723419248E71B40023B25F /* UITableView + Extension.swift in Sources */,
 				A27C0D7E24747634002050A6 /* SceneDelegate.swift in Sources */,
 				A272340B248D967A0023B25F /* Repository.swift in Sources */,
 				A2723409248D96530023B25F /* Search.swift in Sources */,
+				A2723416248E0ACD0023B25F /* SearchResultsTableViewCell.swift in Sources */,
 				A27C0D9824753C12002050A6 /* Constants.swift in Sources */,
 				A272340D248D96C70023B25F /* User.swift in Sources */,
 				A24204E72482EBD600714D0A /* SessionProvider.swift in Sources */,

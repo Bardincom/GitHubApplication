@@ -21,7 +21,7 @@ final class LoginViewController: UIViewController {
 
   private let usernamePlaceholder = "username"
   private let passwordPlaceholder = "password"
-  private let identifier = "userViewController"
+  private let identifier = "loginViewController"
 
   override func viewDidLoad() {
     super.viewDidLoad()

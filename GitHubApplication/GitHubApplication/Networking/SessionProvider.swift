@@ -11,6 +11,7 @@ import Foundation
 class SessionProvider: NSObject {
 
   private let sharedSession = URLSession.shared
+  private let decoder = JSONDecoder()
   private let scheme = "https"
   private let host = "api.github.com"
   private let hostPath = "https://api.github.com"
@@ -21,7 +22,7 @@ class SessionProvider: NSObject {
   ///   - name: имя репозитория
   ///   - language: язык репозитория
   ///   - order: выбор лучшего совпадения  desc или asc
-  func searchRepositiries(name: String?, language: String?, order: String) {
+  func searchRepositiries(name: String?, language: String?, order: String, completionHandler: @escaping ([Repository]) -> Void) {
     var urlComponents = URLComponents()
     urlComponents.scheme = scheme
     urlComponents.host = host
@@ -53,14 +54,19 @@ class SessionProvider: NSObject {
         return
       }
 
-      guard let data = data else { return }
+      guard let resquestData = data else { return }
 
       do {
-        let json = try JSONSerialization.jsonObject(with: data)
-        print("Тут начинается JSON: \(json)")
-      } catch {
+        let search = try self.decoder.decode(Search.self, from: resquestData)
+        guard let repositories = search.repositories else { return }
+        DispatchQueue.main.async {
+          completionHandler(repositories)
+        }
+
+      } catch let error {
         print(error)
       }
+
     }
 
     dataTask.resume()

@@ -11,6 +11,7 @@ import UIKit
 public let maxHeightFrame: CGFloat = 736
 public let cornerRadiusButton: CGFloat = 5
 public let defaultAvatar: UIImage = #imageLiteral(resourceName: "defaultAvatar")
+public let heightForHeaderTableView: CGFloat = 40
 
 /// коэффициент изменяющий смещение view относительно клавиатуры, для экранов с большим и маленьким рарзешением
 enum Factor {
