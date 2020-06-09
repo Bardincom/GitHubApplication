@@ -59,6 +59,7 @@ final class SessionProvider: NSObject {
       do {
         let search = try self.decoder.decode(Search.self, from: resquestData)
         guard let repositories = search.repositories else { return }
+
         DispatchQueue.main.async {
           completionHandler(repositories)
         }

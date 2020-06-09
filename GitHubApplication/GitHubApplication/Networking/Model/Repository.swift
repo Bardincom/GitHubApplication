@@ -12,12 +12,12 @@ public struct Repository: Codable {
   var nameRepository: String?
   var userRepository: User?
   var descriptionRepository: String?
-  var urluserRepository: String?
+  var urlUserRepository: String?
 
   private enum CodingKeys: String, CodingKey {
     case nameRepository = "name"
     case descriptionRepository = "description"
     case userRepository = "owner"
-    case urluserRepository = "html_url"
+    case urlUserRepository = "html_url"
   }
 }

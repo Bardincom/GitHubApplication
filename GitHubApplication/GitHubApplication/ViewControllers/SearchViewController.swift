@@ -51,6 +51,7 @@ final class SearchViewController: UIViewController {
                                             searchRepositoryViewController.repositories = repositories
                                              self.navigationController?.pushViewController(searchRepositoryViewController, animated: true)
     }
+
   }
 
   @IBAction func filterControl(_ sender: UISegmentedControl) {
