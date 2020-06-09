@@ -45,13 +45,11 @@ final class SearchViewController: UIViewController {
 
   @IBAction func pressStartSearch(_ sender: UIButton) {
     let searchRepositoryViewController = SearchResultsViewController()
-    sessionProvider.searchRepositiries(name: searchRepositoryName.text ?? defaultRequestText,
-                                           language: searchLanguage.text ?? defaultRequestText,
-                                           order: filter) { repositories in
-                                            searchRepositoryViewController.repositories = repositories
-                                             self.navigationController?.pushViewController(searchRepositoryViewController, animated: true)
-    }
+    searchRepositoryViewController.searchRepository.name = searchRepositoryName.text ?? defaultRequestText
+    searchRepositoryViewController.searchRepository.language = searchLanguage.text ?? defaultRequestText
+    searchRepositoryViewController.searchRepository.order = filter
 
+    navigationController?.pushViewController(searchRepositoryViewController, animated: true)
   }
 
   @IBAction func filterControl(_ sender: UISegmentedControl) {

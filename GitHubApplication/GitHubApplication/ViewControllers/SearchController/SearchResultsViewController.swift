@@ -10,7 +10,9 @@ import UIKit
 
 final class SearchResultsViewController: UIViewController {
 
-  var repositories: [Repository] = []
+  public var searchRepository: (name: String?, language: String?, order: String?)
+  private var repositories: [Repository] = []
+  private let sessionProvider = SessionProvider()
 
   @IBOutlet weak var searcTableView: UITableView! {
     willSet {
@@ -19,9 +21,10 @@ final class SearchResultsViewController: UIViewController {
   }
 
   override func viewDidLoad() {
-        super.viewDidLoad()
+    super.viewDidLoad()
 
-    }
+    downloadSearchData()
+  }
 
 }
 
@@ -56,5 +59,16 @@ extension SearchResultsViewController: UITableViewDataSource {
     cell.setupRepositoryList(repository: repositories[indexPath.row])
 
     return cell
+  }
+}
+
+private extension SearchResultsViewController {
+  func downloadSearchData() {
+    sessionProvider.searchRepositiries(name: searchRepository.name,
+                                       language: searchRepository.language,
+                                       order: searchRepository.order ?? Filter.descendedFilter) { foundRepository in
+                                        self.repositories = foundRepository
+                                        self.searcTableView.reloadData()
+    }
   }
 }

@@ -29,7 +29,7 @@ whitelist_rules:
     - implicit_getter
     - implicitly_unwrapped_optional
     - inert_defer
-    - large_tuple
+    #- large_tuple
     - last_where
     - leading_whitespace
     - legacy_cggeometry_functions
