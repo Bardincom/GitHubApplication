@@ -34,6 +34,7 @@ final class SearchViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
+    clearText()
     notificationAddObserver(#selector(keyboardWillShown(notification:)))
   }
 
@@ -43,7 +44,6 @@ final class SearchViewController: UIViewController {
   }
 
   @IBAction func pressStartSearch(_ sender: UIButton) {
-
     let searchRepositoryViewController = SearchResultsViewController()
     sessionProvider.searchRepositiries(name: searchRepositoryName.text ?? defaultRequestText,
                                            language: searchLanguage.text ?? defaultRequestText,
@@ -85,6 +85,11 @@ private extension SearchViewController {
   func setDelegate() {
     searchRepositoryName.delegate = self
     searchLanguage.delegate = self
+  }
+
+  func clearText() {
+    searchRepositoryName.text = nil
+    searchLanguage.text = nil
   }
 
 }

@@ -10,7 +10,7 @@ import Foundation
 
 public struct User: Codable {
   var userLogin: String?
-  var avatarURL: String?
+  var avatarURL: URL?
 
   private enum CodingKeys: String, CodingKey {
     case userLogin = "login"

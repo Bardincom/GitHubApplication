@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchResultsViewController: UIViewController {
+final class SearchResultsViewController: UIViewController {
 
   var repositories: [Repository] = []
 
@@ -28,20 +28,19 @@ class SearchResultsViewController: UIViewController {
 // MARK: TableViewDelegate
 extension SearchResultsViewController: UITableViewDelegate {
 
-//  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//    let view = UIView()
-//    view.backgroundColor = .yellow
-//    let label = UILabel()
-//    label.text = "Repositories found: \(repositories.count)"
-//    return label
-//  }
-
-  func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    "Repositories found: \(repositories.count)"
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let label = UILabel()
+    label.text = "  Repositories found: \(repositories.count)"
+    label.backgroundColor = .white
+    return label
   }
 
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     heightForHeaderTableView
+  }
+
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
   }
 }
 

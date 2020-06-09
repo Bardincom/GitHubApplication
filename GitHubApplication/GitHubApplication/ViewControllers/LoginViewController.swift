@@ -48,6 +48,7 @@ final class LoginViewController: UIViewController {
     let userName = usernameTextField.text
     userViewController.userName = userName
     navigationController?.pushViewController(userViewController, animated: true)
+
   }
 
   @IBAction func hideKeyboard(_ sender: UITapGestureRecognizer) {

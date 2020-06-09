@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SessionProvider: NSObject {
+final class SessionProvider: NSObject {
 
   private let sharedSession = URLSession.shared
   private let decoder = JSONDecoder()
@@ -64,7 +64,7 @@ class SessionProvider: NSObject {
         }
 
       } catch let error {
-        print(error)
+        print("Error", error)
       }
 
     }

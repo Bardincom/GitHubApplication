@@ -27,6 +27,7 @@
 		A27C0D90247476F3002050A6 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A27C0D8F247476F3002050A6 /* .gitignore */; };
 		A27C0D95247487AA002050A6 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A27C0D94247487AA002050A6 /* .swiftlint.yml */; };
 		A27C0D9824753C12002050A6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0D9724753C12002050A6 /* Constants.swift */; };
+		A2AC8A0C248F8B5100429082 /* ActivitiIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AC8A0B248F8B5100429082 /* ActivitiIndicator.swift */; };
 		A2B0ABE22480FC800052CC1A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B0ABE12480FC800052CC1A /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		A27C0D8F247476F3002050A6 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		A27C0D94247487AA002050A6 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		A27C0D9724753C12002050A6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A2AC8A0B248F8B5100429082 /* ActivitiIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiIndicator.swift; sourceTree = "<group>"; };
 		A2B0ABE12480FC800052CC1A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -195,6 +197,7 @@
 				A27C0D9724753C12002050A6 /* Constants.swift */,
 				A24204E82483F78000714D0A /* UIViewController + Extension.swift */,
 				A2723418248E71B40023B25F /* UITableView + Extension.swift */,
+				A2AC8A0B248F8B5100429082 /* ActivitiIndicator.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				A24204E92483F78000714D0A /* UIViewController + Extension.swift in Sources */,
 				A2B0ABE22480FC800052CC1A /* SearchViewController.swift in Sources */,
 				A2723410248E091C0023B25F /* SearchResultsViewController.swift in Sources */,
+				A2AC8A0C248F8B5100429082 /* ActivitiIndicator.swift in Sources */,
 				A27C0D7C24747634002050A6 /* AppDelegate.swift in Sources */,
 				A2723419248E71B40023B25F /* UITableView + Extension.swift in Sources */,
 				A27C0D7E24747634002050A6 /* SceneDelegate.swift in Sources */,
