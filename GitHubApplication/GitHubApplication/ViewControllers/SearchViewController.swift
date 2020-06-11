@@ -26,15 +26,14 @@ final class SearchViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    disableSearchButton()
     setDelegate()
     customizeItems()
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-
-    clearText()
+    disableSearchButton()
     notificationAddObserver(#selector(keyboardWillShown(notification:)))
   }
 
@@ -86,11 +85,15 @@ private extension SearchViewController {
     searchLanguage.delegate = self
   }
 
-  func clearText() {
-    searchRepositoryName.text = nil
-    searchLanguage.text = nil
+  func disableSearchButton() {
+    startSearchButton.isEnabled = false
+    startSearchButton.alpha = 0.5
   }
 
+  func enableSearchButton() {
+    startSearchButton.isEnabled = true
+    startSearchButton.alpha = 1
+  }
 }
 
 // MARK: Selectors
@@ -117,5 +120,16 @@ extension SearchViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()
     return true
+  }
+
+  func textFieldDidEndEditing(_ textField: UITextField) {
+    guard let simbolCount = searchRepositoryName.text?.count else { return }
+
+    if simbolCount > 1 {
+      enableSearchButton()
+    } else {
+      disableSearchButton()
+    }
+
   }
 }

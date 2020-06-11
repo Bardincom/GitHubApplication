@@ -22,7 +22,7 @@ final class SearchResultsViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    ActivityIndicator.start()
     downloadSearchData()
   }
 
@@ -64,11 +64,12 @@ extension SearchResultsViewController: UITableViewDataSource {
 
 private extension SearchResultsViewController {
   func downloadSearchData() {
-    sessionProvider.searchRepositiries(name: searchRepository.name,
+    sessionProvider.getRepositiries(name: searchRepository.name,
                                        language: searchRepository.language,
                                        order: searchRepository.order ?? Filter.descendedFilter) { foundRepository in
                                         self.repositories = foundRepository
                                         self.searcTableView.reloadData()
+                                        ActivityIndicator.stop()
     }
   }
 }
