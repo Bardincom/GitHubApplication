@@ -22,6 +22,7 @@ final class LoginViewController: UIViewController {
   private let usernamePlaceholder = "username"
   private let passwordPlaceholder = "password"
   private let identifier = "loginViewController"
+  private let sessionProvider = SessionProvider()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -33,7 +34,6 @@ final class LoginViewController: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-
     notificationAddObserver(#selector(keyboardWillShown(notification:)))
   }
 
@@ -44,11 +44,22 @@ final class LoginViewController: UIViewController {
 
   @IBAction func pressLoginButton(_ sender: Any) {
     guard let userViewController = storyboard?.instantiateViewController(identifier: identifier) as? SearchViewController else { return }
+    guard let userName = usernameTextField?.text,
+      let userPassword = passwordTextField?.text else { return }
 
-    let userName = usernameTextField.text
-    userViewController.userName = userName
-    navigationController?.pushViewController(userViewController, animated: true)
+    sessionProvider.autoriz(name: userName, password: userPassword) { result in
+      switch result {
+        case .success(let user):
+          userViewController.userName = user.userLogin
+          guard let urlLogoImage = user.avatarURL else { return }
+          print(urlLogoImage)
+          userViewController.userAvatarURL = user.avatarURL
+          self.navigationController?.pushViewController(userViewController, animated: true)
 
+        case .fail( _):
+           Alert.showBasic(viewController: self)
+      }
+    }
   }
 
   @IBAction func hideKeyboard(_ sender: UITapGestureRecognizer) {
