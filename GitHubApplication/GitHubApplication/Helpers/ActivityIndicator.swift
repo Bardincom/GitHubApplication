@@ -16,6 +16,7 @@ public class ActivityIndicator {
   static var baseBackColor = UIColor(white: 0, alpha: 0.7)
   static var baseColor = UIColor.white
 
+  /// Запускает индикатор загрузки
   static func start(style: UIActivityIndicatorView.Style = style,
                     backColor: UIColor = baseBackColor,
                     baseColor: UIColor = baseColor) {
@@ -35,6 +36,7 @@ public class ActivityIndicator {
     }
   }
 
+  /// Останавливает индикатор загрузки
   static func stop() {
     if activityIndicator != nil {
       DispatchQueue.main.async {

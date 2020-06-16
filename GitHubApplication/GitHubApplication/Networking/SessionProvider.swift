@@ -26,14 +26,16 @@ final class SessionProvider {
   private let scheme = "https"
   private let host = "api.github.com"
   private let hostPath = "https://api.github.com"
-  private let header = ""
 
   enum Path {
     static let searchRepoPath = "/search/repositories"
     static let userPath = "/user"
   }
 
-  func autoriz(name: String, password: String, completionHandler: @escaping (Result<User>) -> Void) {
+  func authorizationUser(name: String,
+                         password: String,
+                         completionHandler: @escaping (Result<User>) -> Void) {
+
     ActivityIndicator.start()
     guard let userData = "\(name):\(password)".data(using: .utf8)?.base64EncodedString() else { return }
 
@@ -42,7 +44,6 @@ final class SessionProvider {
     guard let url = urlComponents.url else { return }
 
     var request = URLRequest(url: url)
-
     request.addValue("Basic \(userData)", forHTTPHeaderField: "Authorization")
 
     let dataTask = sharedSession.dataTask(with: request) { (data, response, error) in

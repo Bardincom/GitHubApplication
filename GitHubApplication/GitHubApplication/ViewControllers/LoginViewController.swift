@@ -28,7 +28,6 @@ final class LoginViewController: UIViewController {
     super.viewDidLoad()
 
     setDelegate()
-    setLogo()
     customizeItems()
   }
 
@@ -47,7 +46,7 @@ final class LoginViewController: UIViewController {
     guard let userName = usernameTextField?.text,
       let userPassword = passwordTextField?.text else { return }
 
-    sessionProvider.autoriz(name: userName, password: userPassword) { result in
+    sessionProvider.authorizationUser(name: userName, password: userPassword) { result in
       switch result {
         case .success(let user):
           userViewController.userName = user.userLogin
@@ -57,7 +56,7 @@ final class LoginViewController: UIViewController {
           self.navigationController?.pushViewController(userViewController, animated: true)
 
         case .fail( _):
-           Alert.showBasic(viewController: self)
+           Alert.showAlert(viewController: self)
       }
     }
   }
@@ -79,18 +78,14 @@ extension LoginViewController: UITextFieldDelegate {
 // MARK: Helpers Methods
 private extension LoginViewController {
 
-  /// установка загруженного изображения
-  func setLogo() {
-    let urlLogoImage = urlImage
-    self.logoImageView.kf.setImage(with: urlLogoImage)
-  }
-
   /// настройка внешнего вида UI элементов
   func customizeItems() {
     usernameTextField.placeholder = usernamePlaceholder
     passwordTextField.placeholder = passwordPlaceholder
     passwordTextField.isSecureTextEntry = true
     loginButton.layer.cornerRadius = cornerRadiusButton
+
+    self.logoImageView.kf.setImage(with: urlImage)
   }
 
   func setDelegate() {

@@ -70,7 +70,7 @@ private extension SearchResultsViewController {
   func downloadSearchData() {
     sessionProvider.getRepositiries(name: searchRepository.name,
                                        language: searchRepository.language,
-                                       order: searchRepository.order ?? Filter.descendedFilter) { foundRepository in
+                                       order: searchRepository.order ?? Order.descendedOrder) { foundRepository in
                                         self.repositories = foundRepository
                                         self.searcTableView.reloadData()
                                         ActivityIndicator.stop()

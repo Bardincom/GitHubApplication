@@ -36,6 +36,7 @@ class WebViewController: UIViewController {
 
 }
 
+// MARK: WebViewController + Helper
 private extension WebViewController {
   func setupWebViewController() {
     let webConfiguration = WKWebViewConfiguration()
@@ -72,6 +73,7 @@ private extension WebViewController {
   }
 }
 
+// MARK: WKNavigationDelegate
 extension WebViewController: WKNavigationDelegate {
   func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
     guard let userName = userName else { return }

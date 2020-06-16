@@ -23,7 +23,7 @@ final class SearchViewController: UIViewController {
   private let repositoryNamePlaceholder = "repository name"
   private let languagePlaceholder = "language"
   private let defaultRequestText = ""
-  private var filter = Filter.descendedFilter
+  private var filter = Order.descendedOrder
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -55,9 +55,9 @@ final class SearchViewController: UIViewController {
   @IBAction func filterControl(_ sender: UISegmentedControl) {
     switch filterControl.selectedSegmentIndex {
       case 0:
-        filter = Filter.ascendedFilter
+        filter = Order.ascendedOrder
       default:
-        filter = Filter.descendedFilter
+        filter = Order.descendedOrder
     }
   }
 
@@ -67,6 +67,7 @@ final class SearchViewController: UIViewController {
   }
 }
 
+// MARK: SearchViewController + Helper
 private extension SearchViewController {
 
   func customizeItems() {
@@ -75,9 +76,8 @@ private extension SearchViewController {
     startSearchButton.layer.cornerRadius = cornerRadiusButton
 
     avatarImage.layer.cornerRadius = avatarImage.bounds.height / 2
-    let urlLogoImage = userAvatarURL
-    self.avatarImage.kf.setImage(with: urlLogoImage)
     avatarImage.backgroundColor = .white
+    self.avatarImage.kf.setImage(with: userAvatarURL)
 
     guard let userName = userName else { return }
     helloUser.text = "Hello, \(userName)"
@@ -128,7 +128,7 @@ extension SearchViewController: UITextFieldDelegate {
   func textFieldDidEndEditing(_ textField: UITextField) {
     guard let simbolCount = searchRepositoryName.text?.count else { return }
 
-    if simbolCount > 1 {
+    if simbolCount > 0 {
       enableSearchButton()
     } else {
       disableSearchButton()

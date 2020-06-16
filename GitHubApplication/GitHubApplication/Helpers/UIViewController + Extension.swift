@@ -62,39 +62,3 @@ extension UIViewController {
      self.view.frame.origin.y = .zero
    }
 }
-
-// MARK: Alert
-//class Alert: UIViewController {
-//  class func displayAlert() {
-//
-//      let alertController = UIAlertController(title: "Authentication failed!",
-//                                              message: "Please, try again.",
-//                                              preferredStyle: .alert)
-//
-//      let cancelAction = UIAlertAction(title: "Ok", style: .cancel) { _ in
-////          self.navigationController?.popToRootViewController(animated: true)
-//      }
-//
-//      alertController.addAction(cancelAction)
-//      alertController.preferredAction = cancelAction
-//
-//      present(alertController, animated: false, completion: nil)
-//  }
-//
-//}
-
-class Alert {
-
-    //Создает алерт
-    class func showBasic(viewController: UIViewController) {
-      DispatchQueue.main.async {
-         let alert = UIAlertController(title: "Authentication failed!",
-                                             message: "Please, try again.",
-                                             preferredStyle: .alert)
-
-               alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-               viewController.present(alert, animated: true)
-      }
-
-    }
-}

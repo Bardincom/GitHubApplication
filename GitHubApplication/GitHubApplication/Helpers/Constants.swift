@@ -13,13 +13,14 @@ public let cornerRadiusButton: CGFloat = 5
 public let defaultAvatar: UIImage = #imageLiteral(resourceName: "defaultAvatar")
 public let heightForHeaderTableView: CGFloat = 40
 
-/// коэффициент изменяющий смещение view относительно клавиатуры, для экранов с большим и маленьким рарзешением
+/// Коэффициент изменяющий смещение view относительно клавиатуры, для экранов с большим и маленьким рарзешением
 enum Factor {
   static let compact: CGFloat = 0.8
   static let regular: CGFloat = 0.3
 }
 
-enum Filter {
-  static let ascendedFilter = "asc"
-  static let descendedFilter = "desc"
+/// Порядок формирования результата
+enum Order {
+  static let ascendedOrder = "asc"
+  static let descendedOrder = "desc"
 }
