@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0F1A2D368409A2A0D8E1CDBB /* Pods_GitHubApplication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BCF3CBB7CBC6241FC98A0E9 /* Pods_GitHubApplication.framework */; };
-		A23EF783249118E9007A2381 /* .todoList in Resources */ = {isa = PBXBuildFile; fileRef = A23EF782249118E9007A2381 /* .todoList */; };
 		A24204E72482EBD600714D0A /* SessionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24204E62482EBD600714D0A /* SessionProvider.swift */; };
 		A24204E92483F78000714D0A /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24204E82483F78000714D0A /* UIViewController + Extension.swift */; };
 		A25A00472499689300FCC198 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25A00462499689300FCC198 /* Alert.swift */; };
@@ -38,7 +37,6 @@
 		1BCF3CBB7CBC6241FC98A0E9 /* Pods_GitHubApplication.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHubApplication.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		53FB0DC0157FBC5703BF822C /* Pods-GitHubApplication.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubApplication.release.xcconfig"; path = "Target Support Files/Pods-GitHubApplication/Pods-GitHubApplication.release.xcconfig"; sourceTree = "<group>"; };
 		7725A5FCC832AEC7C031C45F /* Pods-GitHubApplication.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHubApplication.debug.xcconfig"; path = "Target Support Files/Pods-GitHubApplication/Pods-GitHubApplication.debug.xcconfig"; sourceTree = "<group>"; };
-		A23EF782249118E9007A2381 /* .todoList */ = {isa = PBXFileReference; lastKnownFileType = text; path = .todoList; sourceTree = "<group>"; };
 		A24204E62482EBD600714D0A /* SessionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionProvider.swift; sourceTree = "<group>"; };
 		A24204E82483F78000714D0A /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		A25A00462499689300FCC198 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
@@ -149,7 +147,6 @@
 			children = (
 				A27C0D94247487AA002050A6 /* .swiftlint.yml */,
 				A27C0D8F247476F3002050A6 /* .gitignore */,
-				A23EF782249118E9007A2381 /* .todoList */,
 				A27C0D7A24747634002050A6 /* GitHubApplication */,
 				A27C0D7924747634002050A6 /* Products */,
 				8C53F57846DE4AD5BCDF7383 /* Pods */,
@@ -273,7 +270,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A27C0D95247487AA002050A6 /* .swiftlint.yml in Resources */,
-				A23EF783249118E9007A2381 /* .todoList in Resources */,
 				A27C0D90247476F3002050A6 /* .gitignore in Resources */,
 				A27C0D8824747637002050A6 /* LaunchScreen.storyboard in Resources */,
 				A2723417248E0ACD0023B25F /* SearchResultsTableViewCell.xib in Resources */,
