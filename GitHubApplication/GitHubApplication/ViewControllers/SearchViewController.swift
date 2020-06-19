@@ -77,7 +77,7 @@ private extension SearchViewController {
 
     avatarImage.layer.cornerRadius = avatarImage.bounds.height / 2
     avatarImage.backgroundColor = .white
-    self.avatarImage.kf.setImage(with: userAvatarURL)
+    avatarImage.kf.setImage(with: userAvatarURL)
 
     guard let userName = userName else { return }
     helloUser.text = "Hello, \(userName)"
@@ -105,16 +105,14 @@ private extension SearchViewController {
   @objc
   func keyboardWillShown(notification: NSNotification) {
 
-    if let size = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+    guard let size = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
 
-      guard view.bounds.height > maxHeightFrame else {
-        shiftView(size, searchRepositoryName, searchLanguage, Factor.compact)
-        return
-      }
-
-      shiftView(size, searchRepositoryName, searchLanguage, Factor.regular)
-
+    guard view.bounds.height > maxHeightFrame else {
+      shiftView(size, searchRepositoryName, searchLanguage, Factor.compact)
+      return
     }
+
+    shiftView(size, searchRepositoryName, searchLanguage, Factor.regular)
   }
 }
 

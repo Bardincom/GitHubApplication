@@ -22,10 +22,10 @@ final class SearchResultsTableViewCell: UITableViewCell {
   }
 
   func setupRepositoryList(repository: Repository) {
-        self.repositoryName.text = repository.nameRepository
-        self.descriptionRepository.text = repository.descriptionRepository
-        self.userName.text = repository.userRepository?.userLogin
-        guard let avatarURL = repository.userRepository?.avatarURL else { return }
-        self.avatarImage.kf.setImage(with: avatarURL)
+    repositoryName.text = repository.name
+    descriptionRepository.text = repository.description
+    userName.text = repository.user?.login
+    guard let avatarURL = repository.user?.avatarURL else { return }
+    avatarImage.kf.setImage(with: avatarURL)
   }
 }

@@ -46,17 +46,18 @@ final class LoginViewController: UIViewController {
     guard let userName = usernameTextField?.text,
       let userPassword = passwordTextField?.text else { return }
 
-    sessionProvider.authorizationUser(name: userName, password: userPassword) { result in
+    sessionProvider.authorizationUser(name: userName, password: userPassword) { [weak self] result in
+      guard let self = self else { return }
       switch result {
         case .success(let user):
-          userViewController.userName = user.userLogin
+          userViewController.userName = user.login
           guard let urlLogoImage = user.avatarURL else { return }
           print(urlLogoImage)
           userViewController.userAvatarURL = user.avatarURL
           self.navigationController?.pushViewController(userViewController, animated: true)
 
         case .fail( _):
-           Alert.showAlert(viewController: self)
+          Alert.showAlert(viewController: self)
       }
     }
   }
@@ -85,7 +86,7 @@ private extension LoginViewController {
     passwordTextField.isSecureTextEntry = true
     loginButton.layer.cornerRadius = cornerRadiusButton
 
-    self.logoImageView.kf.setImage(with: urlImage)
+    logoImageView.kf.setImage(with: urlImage)
   }
 
   func setDelegate() {
@@ -100,15 +101,13 @@ private extension LoginViewController {
   @objc
   func keyboardWillShown(notification: NSNotification) {
 
-    if let size = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+    guard let size = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
 
-      guard view.bounds.height > maxHeightFrame else {
-        shiftView(size, usernameTextField, passwordTextField, Factor.compact)
-        return
-      }
-
-      shiftView(size, usernameTextField, passwordTextField, Factor.regular)
-
+    guard view.bounds.height > maxHeightFrame else {
+      shiftView(size, usernameTextField, passwordTextField, Factor.compact)
+      return
     }
+
+    shiftView(size, usernameTextField, passwordTextField, Factor.regular)
   }
 }

@@ -9,15 +9,14 @@
 import Foundation
 
 public struct Repository: Codable {
-  var nameRepository: String?
-  var userRepository: User?
-  var descriptionRepository: String?
+  var name: String?
+  var user: User?
+  var description: String?
   var urlUserRepository: String?
 
   private enum CodingKeys: String, CodingKey {
-    case nameRepository = "name"
-    case descriptionRepository = "description"
-    case userRepository = "owner"
+    case name, description
+    case user = "owner"
     case urlUserRepository = "html_url"
   }
 }

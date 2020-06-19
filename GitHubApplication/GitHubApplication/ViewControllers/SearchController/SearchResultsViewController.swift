@@ -45,7 +45,7 @@ extension SearchResultsViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let webViewController = WebViewController()
     webViewController.htmlUrl = repositories[indexPath.row].urlUserRepository
-    webViewController.userName = repositories[indexPath.row].userRepository?.userLogin
+    webViewController.userName = repositories[indexPath.row].user?.login
     navigationController?.pushViewController(webViewController, animated: true)
     tableView.deselectRow(at: indexPath, animated: true)
   }
@@ -69,11 +69,12 @@ extension SearchResultsViewController: UITableViewDataSource {
 private extension SearchResultsViewController {
   func downloadSearchData() {
     sessionProvider.getRepositiries(name: searchRepository.name,
-                                       language: searchRepository.language,
-                                       order: searchRepository.order ?? Order.descendedOrder) { foundRepository in
-                                        self.repositories = foundRepository
-                                        self.searcTableView.reloadData()
-                                        ActivityIndicator.stop()
+                                    language: searchRepository.language,
+                                    order: searchRepository.order ?? Order.descendedOrder) { [weak self] foundRepository in
+                                      guard let self = self else { return }
+                                      self.repositories = foundRepository
+                                      self.searcTableView.reloadData()
+                                      ActivityIndicator.stop()
     }
   }
 }

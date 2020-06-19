@@ -15,8 +15,8 @@ enum Result<T> {
 }
 
 enum BackendError: Error {
-    case urlError(reason: String)
-    case objectSerialization(reason: String)
+  case urlError(reason: String)
+  case objectSerialization(reason: String)
 }
 
 final class SessionProvider {

@@ -56,9 +56,9 @@ extension UIViewController {
 
   }
 
- /// метод вызывается когда клавиатура скрывается
+  /// метод вызывается когда клавиатура скрывается
   @objc
-   func keyboardWillHide() {
-     self.view.frame.origin.y = .zero
-   }
+  func keyboardWillHide() {
+    self.view.frame.origin.y = .zero
+  }
 }
