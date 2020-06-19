@@ -22,6 +22,7 @@ final class LoginViewController: UIViewController {
   private let usernamePlaceholder = "username"
   private let passwordPlaceholder = "password"
   private let identifier = "loginViewController"
+  private let service = "GitHub"
   private let sessionProvider = SessionProvider()
 
   override func viewDidLoad() {
@@ -50,9 +51,13 @@ final class LoginViewController: UIViewController {
       guard let self = self else { return }
       switch result {
         case .success(let user):
+          let saveResult = self.savePassword(password: userPassword, account: userName)
+          print(saveResult)
+          if saveResult, let savedPassword = self.readPassword(account: userName) {
+            print("password:\(savedPassword) saved successfully with service name:\(self.service) and account:\(userName)")
+          }
+
           userViewController.userName = user.login
-          guard let urlLogoImage = user.avatarURL else { return }
-          print(urlLogoImage)
           userViewController.userAvatarURL = user.avatarURL
           self.navigationController?.pushViewController(userViewController, animated: true)
 
@@ -92,6 +97,57 @@ private extension LoginViewController {
   func setDelegate() {
     usernameTextField.delegate = self
     passwordTextField.delegate = self
+  }
+
+  func keychainQuery(account: String? = nil) -> [String: AnyObject] {
+    var query = [String: AnyObject]()
+    query[kSecClass as String] = kSecClassGenericPassword
+    query[kSecAttrAccessible as String] = kSecAttrAccessibleWhenUnlocked
+    query[kSecAttrService as String] = service as AnyObject
+
+    guard let account = account else { return query }
+
+    query[kSecAttrAccount as String] = account as AnyObject
+
+    return query
+  }
+
+  func readPassword(account: String?) -> String? {
+    var query = keychainQuery(account: account)
+    query[kSecMatchLimit as String] = kSecMatchLimitOne
+    query[kSecReturnData as String] = kCFBooleanTrue
+    query[kSecReturnAttributes as String] = kCFBooleanTrue
+
+    var queryResult: AnyObject?
+    let status = SecItemCopyMatching(query as CFDictionary, UnsafeMutablePointer(&queryResult))
+
+    if status != noErr {
+      return nil
+    }
+
+    guard let item = queryResult as? [String: AnyObject],
+      let passwordData = item[kSecValueData as String] as? Data,
+      let password = String(data: passwordData, encoding: .utf8) else { return nil }
+
+    return password
+  }
+
+  func savePassword(password: String, account: String?) -> Bool {
+    let passwordData = password.data(using: .utf8)
+
+    guard readPassword(account: account) == nil else {
+      var attributesToUpdate = [String: AnyObject]()
+      attributesToUpdate[kSecValueData as String] = passwordData as AnyObject
+      let query = keychainQuery(account: account)
+      let status = SecItemUpdate(query as CFDictionary, attributesToUpdate as CFDictionary)
+      return status == noErr
+    }
+
+    var item = keychainQuery(account: account)
+    item[kSecValueData as String] = passwordData as AnyObject
+    let status = SecItemAdd(item as CFDictionary, nil)
+    return status == noErr
+
   }
 }
 
