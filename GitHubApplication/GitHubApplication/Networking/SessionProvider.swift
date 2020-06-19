@@ -15,6 +15,7 @@ enum Result<T> {
 }
 
 enum BackendError: Error {
+    // Разное форматирование
     case urlError(reason: String)
     case objectSerialization(reason: String)
 }

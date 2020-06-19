@@ -15,6 +15,7 @@ public struct Repository: Codable {
   var urlUserRepository: String?
 
   private enum CodingKeys: String, CodingKey {
+    // Можно сразу имена сделать такими, как ты написал здесь. Кроме урла. А все остальное и так понятно, что относится к репозиторию
     case nameRepository = "name"
     case descriptionRepository = "description"
     case userRepository = "owner"
