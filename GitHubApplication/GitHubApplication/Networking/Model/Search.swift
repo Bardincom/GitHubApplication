@@ -12,6 +12,7 @@ public struct Search: Codable {
   var repositories: [Repository]?
 
   private enum CodingKeys: String, CodingKey {
+    // почему ты сразу не назвал items? Не надо было бы тогда лепить этот кодин кейс
     case repositories = "items"
   }
 }

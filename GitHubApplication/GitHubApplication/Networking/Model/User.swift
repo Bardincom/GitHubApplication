@@ -13,6 +13,7 @@ public struct User: Codable {
   var avatarURL: URL?
 
   private enum CodingKeys: String, CodingKey {
+    // Аналогично. Юзер логин некорректно называть. Либо юзернэйм, либо логин. В твоем случае логин поудачнее будет
     case userLogin = "login"
     case avatarURL = "avatar_url"
   }

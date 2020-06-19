@@ -77,6 +77,7 @@ private extension SearchViewController {
 
     avatarImage.layer.cornerRadius = avatarImage.bounds.height / 2
     avatarImage.backgroundColor = .white
+    // селф ни к чему тут
     self.avatarImage.kf.setImage(with: userAvatarURL)
 
     guard let userName = userName else { return }
@@ -104,7 +105,7 @@ private extension SearchViewController {
 
   @objc
   func keyboardWillShown(notification: NSNotification) {
-
+    // Почему не guard-else
     if let size = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
 
       guard view.bounds.height > maxHeightFrame else {

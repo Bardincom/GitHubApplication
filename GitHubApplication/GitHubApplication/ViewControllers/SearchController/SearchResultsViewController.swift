@@ -71,6 +71,7 @@ private extension SearchResultsViewController {
     sessionProvider.getRepositiries(name: searchRepository.name,
                                        language: searchRepository.language,
                                        order: searchRepository.order ?? Order.descendedOrder) { foundRepository in
+                                        // может произойти захват ссылки, надо бы сделать селф слабым
                                         self.repositories = foundRepository
                                         self.searcTableView.reloadData()
                                         ActivityIndicator.stop()

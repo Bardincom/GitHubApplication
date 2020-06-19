@@ -22,6 +22,7 @@ final class SearchResultsTableViewCell: UITableViewCell {
   }
 
   func setupRepositoryList(repository: Repository) {
+    // self тут не нужен
         self.repositoryName.text = repository.nameRepository
         self.descriptionRepository.text = repository.descriptionRepository
         self.userName.text = repository.userRepository?.userLogin

@@ -17,6 +17,7 @@ final class LoginViewController: UIViewController {
   @IBOutlet var loginButton: UIButton!
 
   /// загружаемое из интернета изобржение
+    // строку можно вынести в константы, хотя не критично
   private let urlImage = URL(string: "https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png")
 
   private let usernamePlaceholder = "username"
@@ -53,6 +54,7 @@ final class LoginViewController: UIViewController {
           guard let urlLogoImage = user.avatarURL else { return }
           print(urlLogoImage)
           userViewController.userAvatarURL = user.avatarURL
+          // думаю тут может возникнуть захват ссылки self, лучше сделать self слабым для этого блока
           self.navigationController?.pushViewController(userViewController, animated: true)
 
         case .fail( _):
@@ -84,7 +86,7 @@ private extension LoginViewController {
     passwordTextField.placeholder = passwordPlaceholder
     passwordTextField.isSecureTextEntry = true
     loginButton.layer.cornerRadius = cornerRadiusButton
-
+    // Здесь селф не нужен
     self.logoImageView.kf.setImage(with: urlImage)
   }
 
@@ -99,7 +101,7 @@ private extension LoginViewController {
 
   @objc
   func keyboardWillShown(notification: NSNotification) {
-
+    // Почему не guard-else
     if let size = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
 
       guard view.bounds.height > maxHeightFrame else {
