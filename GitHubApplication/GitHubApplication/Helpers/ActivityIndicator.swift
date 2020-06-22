@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /// Индикатор загрузки
-public class ActivityIndicator {
+public final class ActivityIndicator {
   static var activityIndicator: UIActivityIndicatorView?
   static var style: UIActivityIndicatorView.Style = .medium
   static var baseBackColor = UIColor(white: 0, alpha: 0.7)

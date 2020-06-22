@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class Alert {
+final class Alert {
 
   /// Выводит предупреждение в случае ошибки при авторизации
   /// - Parameter viewController: передаем контроллер, в котором необходимо показать предупреждение

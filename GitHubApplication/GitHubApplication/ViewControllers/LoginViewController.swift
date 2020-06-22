@@ -31,14 +31,13 @@ final class LoginViewController: UIViewController {
     super.viewDidLoad()
     setDelegate()
     customizeItems()
-//    deletePassword()
 
     authenticateUser()
-
   }
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    authenticateUser()
     notificationAddObserver(#selector(keyboardWillShown(notification:)))
   }
 
@@ -56,7 +55,7 @@ final class LoginViewController: UIViewController {
       guard let self = self else { return }
       switch result {
         case .success(let user):
-          self.isSavePassword = self.savePassword(password: userPassword, account: userName)
+          self.isSavePassword = Keychain.savePassword(password: userPassword, account: userName)
 
           userViewController.userName = user.login
           userViewController.userAvatarURL = user.avatarURL
@@ -101,103 +100,11 @@ private extension LoginViewController {
   }
 }
 
-// MARK: Keychain
-
-private extension LoginViewController {
-  func keychainQuery(account: String? = nil) -> [String: AnyObject] {
-    var query = [String: AnyObject]()
-    query[kSecClass as String] = kSecClassGenericPassword
-    query[kSecAttrAccessible as String] = kSecAttrAccessibleWhenUnlocked
-    query[kSecAttrService as String] = service as AnyObject
-
-    guard let account = account else { return query }
-
-    query[kSecAttrAccount as String] = account as AnyObject
-    return query
-  }
-
-  func readPassword(account: String?) -> String? {
-    var query = keychainQuery(account: account)
-    query[kSecMatchLimit as String] = kSecMatchLimitOne
-    query[kSecReturnData as String] = kCFBooleanTrue
-    query[kSecReturnAttributes as String] = kCFBooleanTrue
-
-    var queryResult: AnyObject?
-    let status = SecItemCopyMatching(query as CFDictionary, UnsafeMutablePointer(&queryResult))
-
-    if status != noErr {
-      return nil
-    }
-
-    guard let item = queryResult as? [String: AnyObject],
-      let passwordData = item[kSecValueData as String] as? Data,
-      let password = String(data: passwordData, encoding: .utf8) else { return nil }
-    return password
-  }
-
-  func savePassword(password: String, account: String?) -> Bool {
-    let passwordData = password.data(using: .utf8)
-
-    guard readPassword(account: account) == nil else {
-      var attributesToUpdate = [String: AnyObject]()
-      attributesToUpdate[kSecValueData as String] = passwordData as AnyObject
-      let query = keychainQuery(account: account)
-      let status = SecItemUpdate(query as CFDictionary, attributesToUpdate as CFDictionary)
-      return status == noErr
-    }
-
-    var item = keychainQuery(account: account)
-    item[kSecValueData as String] = passwordData as AnyObject
-    let status = SecItemAdd(item as CFDictionary, nil)
-    return status == noErr
-  }
-
-  private func readAllItems() -> [String : String]? {
-    var query = keychainQuery()
-    query[kSecMatchLimit as String] = kSecMatchLimitAll
-    query[kSecReturnData as String] = kCFBooleanTrue
-    query[kSecReturnAttributes as String] = kCFBooleanTrue
-
-    var queryResult: AnyObject?
-    let status = SecItemCopyMatching(query as CFDictionary, UnsafeMutablePointer(&queryResult))
-
-    if status != noErr {
-      return nil
-    }
-
-    guard let items = queryResult as? [[String : AnyObject]] else {
-      return nil
-    }
-    var passwordItems = [String : String]()
-
-    for (index, item) in items.enumerated() {
-      guard let passwordData = item[kSecValueData as String] as? Data,
-        let password = String(data: passwordData, encoding: .utf8) else {
-          continue
-      }
-
-      if let account = item[kSecAttrAccount as String] as? String {
-        passwordItems[account] = password
-        continue
-      }
-
-      let account = "empty account \(index)"
-      passwordItems[account] = password
-    }
-    return passwordItems
-  }
-
-  private func deletePassword() -> Bool {
-         let item = keychainQuery()
-         let status = SecItemDelete(item as CFDictionary)
-         return status == noErr
-     }
-}
-
 // MARK: AuthenticationWithBiometrics
 private extension LoginViewController {
   func authenticateUser() {
-    guard let result = readAllItems() else { return }
+    guard let keys = Keychain.readAllItems() else { return }
+
     guard let userViewController = storyboard?.instantiateViewController(identifier: identifier) as? SearchViewController else { return }
     let authenticationContext = LAContext()
     setupAuthenticationContext(context: authenticationContext)
@@ -205,36 +112,38 @@ private extension LoginViewController {
     let reason = "Fast and safe authentication in your app"
     var authError: NSError?
 
-    if authenticationContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
-      authenticationContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { [unowned self] success, evaluateError in
-        if success {
-          // Пользователь успешно прошел аутентификацию
-          for (account, password) in result {
-            self.sessionProvider.authorizationUser(name: account, password: password) { [weak self] result in
-              guard let self = self else { return }
-              switch result {
-                case .success(let user):
-                  userViewController.userName = user.login
-                  userViewController.userAvatarURL = user.avatarURL
-                  self.navigationController?.pushViewController(userViewController, animated: true)
-
-                case .fail( _):
-                  Alert.showAlert(viewController: self)
-              }
-            }
-          }
-        } else {
-          // Пользователь не прошел аутентификацию
-          if let error = evaluateError {
-            print(error.localizedDescription)
-          }
-        }
-      }
-    } else {
+    guard authenticationContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) else {
       // Не удалось выполнить проверку на использование биометрических данных или пароля для аутентификации
-
       if let error = authError {
         print(error.localizedDescription)
+      }
+      return
+    }
+
+    authenticationContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { [unowned self] success, evaluateError in
+
+      guard success else {
+        // Пользователь не прошел аутентификацию
+        if let error = evaluateError {
+          print(error.localizedDescription)
+        }
+        return
+      }
+
+      // Пользователь успешно прошел аутентификацию
+      for (account, password) in keys {
+        self.sessionProvider.authorizationUser(name: account, password: password) { [weak self] result in
+          guard let self = self else { return }
+          switch result {
+            case .success(let user):
+              userViewController.userName = user.login
+              userViewController.userAvatarURL = user.avatarURL
+              self.navigationController?.pushViewController(userViewController, animated: true)
+
+            case .fail( _):
+              Alert.showAlert(viewController: self)
+          }
+        }
       }
     }
   }
@@ -243,7 +152,6 @@ private extension LoginViewController {
     context.localizedReason = "Use for fast and safe authentication in your app"
     context.localizedCancelTitle = "Cancel"
     context.localizedFallbackTitle = "Enter password"
-
     context.touchIDAuthenticationAllowableReuseDuration = 600
   }
 }

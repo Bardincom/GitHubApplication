@@ -22,6 +22,8 @@
 	<true/>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Используйте лицо для быстрого доступа к приложению!</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

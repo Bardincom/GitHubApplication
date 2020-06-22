@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import WebKit
 
-class WebViewController: UIViewController {
+final class WebViewController: UIViewController {
 
   private let backgroundColor = "red"
   private let sourseString = "document.body.style.background"
