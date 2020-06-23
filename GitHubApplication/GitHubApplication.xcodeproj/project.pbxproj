@@ -175,8 +175,8 @@
 				A27C0D8124747634002050A6 /* Main.storyboard */,
 				A27C0D8624747637002050A6 /* LaunchScreen.storyboard */,
 				A27C0D8924747637002050A6 /* Info.plist */,
-				A27C0D922474794E002050A6 /* Resource */,
 				A27C0D9624753B9F002050A6 /* Helpers */,
+				A27C0D922474794E002050A6 /* Resource */,
 			);
 			path = GitHubApplication;
 			sourceTree = "<group>";

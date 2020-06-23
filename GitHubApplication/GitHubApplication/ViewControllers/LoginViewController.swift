@@ -37,7 +37,6 @@ final class LoginViewController: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    authenticateUser()
     notificationAddObserver(#selector(keyboardWillShown(notification:)))
   }
 
