@@ -23,15 +23,14 @@ final class LoginViewController: UIViewController {
   private let usernamePlaceholder = "username"
   private let passwordPlaceholder = "password"
   private let identifier = "loginViewController"
-  private let service = "GitHub"
   private let sessionProvider = SessionProvider()
   private var isSavePassword = false
+  private var keychaine = Keychain.shared
 
   override func viewDidLoad() {
     super.viewDidLoad()
     setDelegate()
     customizeItems()
-
     authenticateUser()
   }
 
@@ -54,7 +53,7 @@ final class LoginViewController: UIViewController {
       guard let self = self else { return }
       switch result {
         case .success(let user):
-          self.isSavePassword = Keychain.savePassword(password: userPassword, account: userName)
+          self.isSavePassword = self.keychaine.savePassword(password: userPassword, account: userName)
 
           userViewController.userName = user.login
           userViewController.userAvatarURL = user.avatarURL
@@ -102,9 +101,8 @@ private extension LoginViewController {
 // MARK: AuthenticationWithBiometrics
 private extension LoginViewController {
   func authenticateUser() {
-    guard let keys = Keychain.readAllItems() else { return }
-
-    guard let userViewController = storyboard?.instantiateViewController(identifier: identifier) as? SearchViewController else { return }
+    guard let keys = keychaine.readAllItems() else { return }
+    
     let authenticationContext = LAContext()
     setupAuthenticationContext(context: authenticationContext)
 
@@ -128,8 +126,21 @@ private extension LoginViewController {
         }
         return
       }
+      self.successfulAuthentication(keys)
+    }
+  }
 
-      // Пользователь успешно прошел аутентификацию
+  func setupAuthenticationContext(context: LAContext) {
+    context.localizedReason = "Use for fast and safe authentication in your app"
+    context.localizedCancelTitle = "Cancel"
+    context.localizedFallbackTitle = "Enter password"
+    context.touchIDAuthenticationAllowableReuseDuration = 300
+  }
+
+  /// Пользователь успешно прошел аутентификацию
+  func successfulAuthentication(_ keys: [String : String]) {
+    DispatchQueue.main.async {
+      guard let userViewController = self.storyboard?.instantiateViewController(identifier: self.identifier) as? SearchViewController else { return }
       for (account, password) in keys {
         self.sessionProvider.authorizationUser(name: account, password: password) { [weak self] result in
           guard let self = self else { return }
@@ -145,13 +156,6 @@ private extension LoginViewController {
         }
       }
     }
-  }
-
-  func setupAuthenticationContext(context: LAContext) {
-    context.localizedReason = "Use for fast and safe authentication in your app"
-    context.localizedCancelTitle = "Cancel"
-    context.localizedFallbackTitle = "Enter password"
-    context.touchIDAuthenticationAllowableReuseDuration = 600
   }
 }
 

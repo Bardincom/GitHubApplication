@@ -9,9 +9,16 @@
 import Foundation
 
 final class Keychain {
-  private static let service = "GitHub"
 
-  class func savePassword(password: String, account: String?) -> Bool {
+  private let service = "GitHub"
+  static let shared: Keychain = {
+    let keychain = Keychain()
+    return keychain
+  }()
+
+  private init() { }
+
+  func savePassword(password: String, account: String?) -> Bool {
     let passwordData = password.data(using: .utf8)
 
     guard readPassword(account: account) == nil else {
@@ -28,14 +35,15 @@ final class Keychain {
     return status == noErr
   }
 
-  class func readAllItems() -> [String : String]? {
+  func readAllItems() -> [String : String]? {
     var query = keychainQuery()
     query[kSecMatchLimit as String] = kSecMatchLimitAll
     query[kSecReturnData as String] = kCFBooleanTrue
     query[kSecReturnAttributes as String] = kCFBooleanTrue
 
-    var queryResult: AnyObject?
-    let status = SecItemCopyMatching(query as CFDictionary, UnsafeMutablePointer(&queryResult))
+    let queryDictionary = query as CFDictionary
+    var queryResult: CFTypeRef?
+    let status = SecItemCopyMatching(queryDictionary, &queryResult)
 
     if status != noErr {
       return nil
@@ -60,7 +68,6 @@ final class Keychain {
       let account = "empty account \(index)"
       passwordItems[account] = password
     }
-    print(passwordItems)
     return passwordItems
   }
 
@@ -68,7 +75,7 @@ final class Keychain {
 
 private extension Keychain {
 
-  class func keychainQuery(account: String? = nil) -> [String: AnyObject] {
+  func keychainQuery(account: String? = nil) -> [String: AnyObject] {
     var query = [String: AnyObject]()
     query[kSecClass as String] = kSecClassGenericPassword
     query[kSecAttrAccessible as String] = kSecAttrAccessibleWhenUnlocked
@@ -80,14 +87,15 @@ private extension Keychain {
     return query
   }
 
-  class func readPassword(account: String?) -> String? {
+  func readPassword(account: String?) -> String? {
     var query = keychainQuery(account: account)
     query[kSecMatchLimit as String] = kSecMatchLimitOne
     query[kSecReturnData as String] = kCFBooleanTrue
     query[kSecReturnAttributes as String] = kCFBooleanTrue
 
-    var queryResult: AnyObject?
-    let status = SecItemCopyMatching(query as CFDictionary, UnsafeMutablePointer(&queryResult))
+    let queryDictionary = query as CFDictionary
+    var queryResult: CFTypeRef?
+    let status = SecItemCopyMatching(queryDictionary, &queryResult)
 
     if status != noErr {
       return nil
@@ -99,9 +107,9 @@ private extension Keychain {
     return password
   }
 
-  class func deletePassword() -> Bool {
-    let item = keychainQuery()
-    let status = SecItemDelete(item as CFDictionary)
+  func deletePassword() -> Bool {
+    let query = keychainQuery()
+    let status = SecItemDelete(query as CFDictionary)
     return status == noErr
   }
 }
