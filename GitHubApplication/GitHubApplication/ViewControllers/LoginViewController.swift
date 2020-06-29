@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import LocalAuthentication
 
 final class LoginViewController: UIViewController {
 
@@ -23,12 +24,14 @@ final class LoginViewController: UIViewController {
   private let passwordPlaceholder = "password"
   private let identifier = "loginViewController"
   private let sessionProvider = SessionProvider()
+  private var isSavePassword = false
+  private var keychaine = Keychain.shared
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
     setDelegate()
     customizeItems()
+    authenticateUser()
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -50,9 +53,9 @@ final class LoginViewController: UIViewController {
       guard let self = self else { return }
       switch result {
         case .success(let user):
+          self.isSavePassword = self.keychaine.savePassword(password: userPassword, account: userName)
+
           userViewController.userName = user.login
-          guard let urlLogoImage = user.avatarURL else { return }
-          print(urlLogoImage)
           userViewController.userAvatarURL = user.avatarURL
           self.navigationController?.pushViewController(userViewController, animated: true)
 
@@ -92,6 +95,67 @@ private extension LoginViewController {
   func setDelegate() {
     usernameTextField.delegate = self
     passwordTextField.delegate = self
+  }
+}
+
+// MARK: AuthenticationWithBiometrics
+private extension LoginViewController {
+  func authenticateUser() {
+    guard let keys = keychaine.readAllItems() else { return }
+    
+    let authenticationContext = LAContext()
+    setupAuthenticationContext(context: authenticationContext)
+
+    let reason = "Fast and safe authentication in your app"
+    var authError: NSError?
+
+    guard authenticationContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) else {
+      // Не удалось выполнить проверку на использование биометрических данных или пароля для аутентификации
+      if let error = authError {
+        print(error.localizedDescription)
+      }
+      return
+    }
+
+    authenticationContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { [unowned self] success, evaluateError in
+
+      guard success else {
+        // Пользователь не прошел аутентификацию
+        if let error = evaluateError {
+          print(error.localizedDescription)
+        }
+        return
+      }
+      self.successfulAuthentication(keys)
+    }
+  }
+
+  func setupAuthenticationContext(context: LAContext) {
+    context.localizedReason = "Use for fast and safe authentication in your app"
+    context.localizedCancelTitle = "Cancel"
+    context.localizedFallbackTitle = "Enter password"
+    context.touchIDAuthenticationAllowableReuseDuration = 300
+  }
+
+  /// Пользователь успешно прошел аутентификацию
+  func successfulAuthentication(_ keys: [String : String]) {
+    DispatchQueue.main.async {
+      guard let userViewController = self.storyboard?.instantiateViewController(identifier: self.identifier) as? SearchViewController else { return }
+      for (account, password) in keys {
+        self.sessionProvider.authorizationUser(name: account, password: password) { [weak self] result in
+          guard let self = self else { return }
+          switch result {
+            case .success(let user):
+              userViewController.userName = user.login
+              userViewController.userAvatarURL = user.avatarURL
+              self.navigationController?.pushViewController(userViewController, animated: true)
+
+            case .fail( _):
+              Alert.showAlert(viewController: self)
+          }
+        }
+      }
+    }
   }
 }
 

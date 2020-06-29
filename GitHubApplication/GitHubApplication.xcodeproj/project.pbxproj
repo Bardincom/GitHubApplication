@@ -28,6 +28,7 @@
 		A27C0D90247476F3002050A6 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A27C0D8F247476F3002050A6 /* .gitignore */; };
 		A27C0D95247487AA002050A6 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A27C0D94247487AA002050A6 /* .swiftlint.yml */; };
 		A27C0D9824753C12002050A6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27C0D9724753C12002050A6 /* Constants.swift */; };
+		A285725024A00D1700DBB609 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A285724F24A00D1600DBB609 /* Keychain.swift */; };
 		A2952E3B249561D30023FC04 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2952E3A249561D30023FC04 /* WebViewController.swift */; };
 		A2B0ABE22480FC800052CC1A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B0ABE12480FC800052CC1A /* SearchViewController.swift */; };
 		A2EC14AF2490BBBB00F0F5AF /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EC14AE2490BBBB00F0F5AF /* ActivityIndicator.swift */; };
@@ -59,6 +60,7 @@
 		A27C0D8F247476F3002050A6 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		A27C0D94247487AA002050A6 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		A27C0D9724753C12002050A6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A285724F24A00D1600DBB609 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		A2952E3A249561D30023FC04 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		A2B0ABE12480FC800052CC1A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A2EC14AE2490BBBB00F0F5AF /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
@@ -173,8 +175,8 @@
 				A27C0D8124747634002050A6 /* Main.storyboard */,
 				A27C0D8624747637002050A6 /* LaunchScreen.storyboard */,
 				A27C0D8924747637002050A6 /* Info.plist */,
-				A27C0D922474794E002050A6 /* Resource */,
 				A27C0D9624753B9F002050A6 /* Helpers */,
+				A27C0D922474794E002050A6 /* Resource */,
 			);
 			path = GitHubApplication;
 			sourceTree = "<group>";
@@ -204,6 +206,7 @@
 				A2723418248E71B40023B25F /* UITableView + Extension.swift */,
 				A2EC14AE2490BBBB00F0F5AF /* ActivityIndicator.swift */,
 				A25A00462499689300FCC198 /* Alert.swift */,
+				A285724F24A00D1600DBB609 /* Keychain.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A285725024A00D1700DBB609 /* Keychain.swift in Sources */,
 				A27C0D8024747634002050A6 /* LoginViewController.swift in Sources */,
 				A24204E92483F78000714D0A /* UIViewController + Extension.swift in Sources */,
 				A2B0ABE22480FC800052CC1A /* SearchViewController.swift in Sources */,
