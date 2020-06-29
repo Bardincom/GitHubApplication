@@ -56,7 +56,6 @@ final class SessionProvider {
           completionHandler(.fail(error))
           return
         }
-        print("http status code: \(httpResponse.statusCode)")
       }
 
       guard let resquestData = data else { return }
