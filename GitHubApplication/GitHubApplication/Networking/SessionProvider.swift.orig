@@ -15,8 +15,13 @@ enum Result<T> {
 }
 
 enum BackendError: Error {
+<<<<<<< HEAD
   case urlError(reason: String)
   case objectSerialization(reason: String)
+=======
+    case urlError(reason: String)
+    case objectSerialization(reason: String)
+>>>>>>> master
 }
 
 final class SessionProvider {
@@ -56,7 +61,10 @@ final class SessionProvider {
           completionHandler(.fail(error))
           return
         }
+<<<<<<< HEAD
+=======
         print("http status code: \(httpResponse.statusCode)")
+>>>>>>> master
       }
 
       guard let resquestData = data else { return }
