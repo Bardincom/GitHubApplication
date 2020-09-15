@@ -45,7 +45,7 @@ final class LoginViewController: UIViewController {
   }
 
   @IBAction func pressLoginButton(_ sender: Any) {
-    guard let userViewController = storyboard?.instantiateViewController(identifier: identifier) as? SearchViewController else { return }
+    guard let searchViewController = storyboard?.instantiateViewController(identifier: identifier) as? SearchViewController else { return }
     guard let userName = usernameTextField?.text,
       let userPassword = passwordTextField?.text else { return }
 
@@ -55,9 +55,8 @@ final class LoginViewController: UIViewController {
         case .success(let user):
           self.isSavePassword = self.keychaine.savePassword(password: userPassword, account: userName)
 
-          userViewController.userName = user.login
-          userViewController.userAvatarURL = user.avatarURL
-          self.navigationController?.pushViewController(userViewController, animated: true)
+          searchViewController.user = user
+          self.navigationController?.pushViewController(searchViewController, animated: true)
 
         case .fail( _):
           Alert.showAlert(viewController: self)
@@ -102,7 +101,7 @@ private extension LoginViewController {
 private extension LoginViewController {
   func authenticateUser() {
     guard let keys = keychaine.readAllItems() else { return }
-    
+
     let authenticationContext = LAContext()
     setupAuthenticationContext(context: authenticationContext)
 
@@ -146,8 +145,7 @@ private extension LoginViewController {
           guard let self = self else { return }
           switch result {
             case .success(let user):
-              userViewController.userName = user.login
-              userViewController.userAvatarURL = user.avatarURL
+              userViewController.user = user
               self.navigationController?.pushViewController(userViewController, animated: true)
 
             case .fail( _):

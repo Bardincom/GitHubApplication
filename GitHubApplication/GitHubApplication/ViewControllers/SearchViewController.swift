@@ -17,8 +17,9 @@ final class SearchViewController: UIViewController {
   @IBOutlet private var filterControl: UISegmentedControl!
   @IBOutlet private var startSearchButton: UIButton!
 
-  public var userName: String?
-  public var userAvatarURL: URL?
+//  public var userName: String?
+//  public var userAvatarURL: URL?
+  public var user: User?
   private let sessionProvider = SessionProvider()
   private let repositoryNamePlaceholder = "repository name"
   private let languagePlaceholder = "language"
@@ -77,9 +78,9 @@ private extension SearchViewController {
 
     avatarImage.layer.cornerRadius = avatarImage.bounds.height / 2
     avatarImage.backgroundColor = .white
-    avatarImage.kf.setImage(with: userAvatarURL)
+    avatarImage.kf.setImage(with: user?.avatarURL)
 
-    guard let userName = userName else { return }
+    guard let userName = user?.login else { return }
     helloUser.text = "Hello, \(userName)"
   }
 
