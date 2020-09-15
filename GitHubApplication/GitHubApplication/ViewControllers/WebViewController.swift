@@ -22,8 +22,7 @@ final class WebViewController: UIViewController {
     return view
   }()
 
-  var htmlUrl: String?
-  var userName: String?
+  public var repository: Repository?
 
   override func loadView() {
     setupWebViewController()
@@ -49,7 +48,7 @@ private extension WebViewController {
   }
 
   func displayUserRepository() {
-    guard let htmlUrl = htmlUrl,
+    guard let htmlUrl = repository?.urlUserRepository,
       let repositoryURL = URL(string: htmlUrl) else { return }
 
     let request = URLRequest(url: repositoryURL)
@@ -76,7 +75,7 @@ private extension WebViewController {
 // MARK: WKNavigationDelegate
 extension WebViewController: WKNavigationDelegate {
   func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-    guard let userName = userName else { return }
+    guard let userName = repository?.user?.login else { return }
     title = "\(userName)"
   }
 }

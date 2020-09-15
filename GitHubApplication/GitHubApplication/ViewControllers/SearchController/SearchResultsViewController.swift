@@ -44,8 +44,8 @@ extension SearchResultsViewController: UITableViewDelegate {
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let webViewController = WebViewController()
-    webViewController.htmlUrl = repositories[indexPath.row].urlUserRepository
-    webViewController.userName = repositories[indexPath.row].user?.login
+
+    webViewController.repository = repositories[indexPath.row].self
     navigationController?.pushViewController(webViewController, animated: true)
     tableView.deselectRow(at: indexPath, animated: true)
   }
