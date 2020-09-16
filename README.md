@@ -22,3 +22,5 @@ MVC
 4. Изучил парсинг **JSON**.
 5. Познакомился с работой **Keychain** в, котором производил сохранение логина и пароля.
 6. Попрактиколав работу биометрической аутентификации.
+
+![GitHubApplication](https://github.com/Bardincom/GitHubApplication/blob/master/Example.gif)
