@@ -34,7 +34,7 @@ extension SearchResultsViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let label = UILabel()
     label.text = "  Repositories found: \(repositories.count)"
-    label.backgroundColor = .white
+    label.backgroundColor = .systemBackground
     return label
   }
 
